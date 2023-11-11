@@ -144,9 +144,11 @@ int main(void)
   printf("Option 2 takes more then two days of processing and about 9 GBytes of disk space if you log the data.\r");
   printf("However, option 2 allows you to analyze and understand the logic behind the brute force algorithm used.\r");
   printf("Also, if you select option 2, every now and then, you will be asked to open a new log file\r");
-  printf("(in order to have many small log files instead of a single huge 8 GB file). When asked to open a new log file,\r");
-  printf("abort your terminal emulator program, rename the log file (preferably with a filename including a sequential number)\r");
-  printf("then restart the terminal emulator program and press <Enter> (the program should resume where it left).\r");
+  printf("(in order to have a few smaller log files instead of a single huge 9 GB log file). When asked to open a new log file,\r");
+  printf("close your terminal emulator program, rename the log file (preferably with a filename including a sequential number)\r");
+  printf("then restart the terminal emulator program and press <Enter> (the program should resume where it left).\r\r");
+  printf("If you use a Raspberry Pi Pico (and not a PicoW), its LED will blink when it's time to close the current log file\r");
+  printf("and open a new one...\r\r");
   printf("Of course, many different algorithms may be used. The one used in this program is more of a <brute force method>\r");
   printf("than an optimized one. Let me know if you explore other algorithms.\r\r\r");
   printf("Enter your choice <1> or <2>: ");
@@ -214,7 +216,7 @@ int main(void)
     if ((SoftwareMode == MODE_ALL_MATRIX) && (Row[0] != 0))
     {
       printf("You may want to open a new log file at this point...\r");
-      printf("Press a key to continue: ");
+      printf("Press <Enter> to continue: ");
 
       /* ---------------------------------------------------------------- *\
                 Blink Pico's LED when this loop is changing value
@@ -227,10 +229,10 @@ int main(void)
         DataInput = getchar_timeout_us(50000);
         sleep_ms(100);
         ++Loop1UInt8;
-        if (Loop1UInt8 > 100)
+        if (Loop1UInt8 > 25)
         {
           Loop1UInt8 = 0;
-          blink_pico_led(3);
+          blink_pico_led(2);
         }
       } while(DataInput != 0x0D);
     }
