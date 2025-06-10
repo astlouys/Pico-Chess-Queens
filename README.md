@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/bfcfc614-8869-41f3-be8c-3bab7b2d9a4e)
+
 # The chess queens problem...
 
 You're asked to "safely" place eight (8) queens on a chess game. "Safely" because there must be
